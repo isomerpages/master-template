@@ -1,8 +1,8 @@
 {%- comment -%} onclick at body tag is needed for iOS Safari to treat stuff other than <a> tags etc (e.g. div) as clickable {%- endcomment -%}
 <div class="masthead-container" id="navbar" onclick>
 {%- include masthead.html -%}
-    <nav class="navbar is-transparent">
-        <div class="bp-container">
+    <nav class="navbar has-text-weight-semibold">
+        <div class="sgds-container">
 
         <div class="navbar-brand">
             <a class="navbar-item" href="/">
@@ -14,17 +14,21 @@
                 <span></span>
             </div>
         </div>
-        <div id="navbarExampleTransparentExample" class="bp-container is-fluid margin--none navbar-menu">
+        <div id="navbarExampleTransparentExample" class="navbar-menu">
             <div class="navbar-start">
-                <div class="navbar-item is-hidden-widescreen is-search-bar">
+                <div class="navbar-item is-hidden-desktop is-search-bar">
                     <form action="/search/" method="get">
                         <div class="field has-addons">
                             <div class="control has-icons-left is-expanded">
-                                <input class="input is-fullwidth" id="search-box-mobile" type="text" placeholder="What are you looking for?" name="query">
-                                <span class="is-large is-left">
-                                  <i class="sgds-icon sgds-icon-search search-bar"></i>
+                                <input 
+                                    class="input is-fullwidth" 
+                                    id="search-box-mobile" 
+                                    type="text" 
+                                    placeholder="What are you looking for?" 
+                                    name="query">
+                                <span class="is-large icon is-left">
+                                    <i class="sgds-icon sgds-icon-search"></i>
                                 </span>
-
                             </div>
                         </div>
                     </form>
@@ -48,7 +52,7 @@
                         
                         {%- assign active = "" -%}
 
-                        <div class="navbar-item has-dropdown is-hoverable">
+                        <div class="navbar-item has-dropdown is-hoverable is-tab">
                             <a class="navbar-link is-uppercase" href="{{site[navitem.collection].first.url}}">
                                 {{- navitem.title -}}
                             </a>
@@ -80,7 +84,7 @@
                     {%- elsif navitem.sublinks -%}
                         {%- comment -%} Leftnav page with custom sublinks {%- endcomment -%}
                         {%- assign active = "" -%}
-                        <div class="navbar-item has-dropdown is-hoverable">
+                        <div class="navbar-item has-dropdown is-hoverable is-tab">
                             {%- assign url_input = navitem.url -%}
                             {%- include functions/external_url.html -%}
                             <a {{anchor}} class="navbar-link is-uppercase">
@@ -111,7 +115,7 @@
                         {%- if page.collection == "posts" or page.layout == "resources" or page.layout == "resources-alt" -%}
                             {%- assign active = " active" -%}
                         {%- endif -%}
-                        <div class="navbar-item has-dropdown is-hoverable">
+                        <div class="navbar-item has-dropdown is-hoverable is-tab">
                             <a class="navbar-link is-uppercase" href="/{{site.resources_name}}/">
                                 {{- navitem.title -}}
                             </a>
@@ -151,37 +155,38 @@
                         <div class="navbar-item">
                             {%- assign url_input = navitem.url -%}
                             {%- include functions/external_url.html -%}
-                            <a {{anchor}} class="navbar-item is-uppercase" style="height:100%;width:100%;">
+                            <a {{anchor}} class="navbar-item is-uppercase is-tab">
                                 {{- navitem.title -}}
+                                <div class="selector is-hidden-touch is-hidden-desktop-only{{active}}"></div>
                             </a>
                             
                             {%- assign active = "" -%}
                             {%- if page.url == navitem.url -%}
                                 {%- assign active = " active" -%}
                             {%- endif -%}
-
                             <div class="selector is-hidden-touch is-hidden-desktop-only{{active}}"></div>
                         </div>
                     {%- endif -%}
                 {%- endfor -%}
             </div>
 
-            <div class="navbar-end is-hidden-touch is-hidden-desktop-only">
+            <div class="navbar-end is-hidden-touch ">
                 <div class="navbar-item">
                     {%- if page.layout != 'search' -%}
-                        <a class="bp-button is-text is-large" style="text-decoration: none" id="search-activate">
-                            <span class="sgds-icon sgds-icon-search is-size-4"></span>
-                        </a>
-                    {%- else -%}
-                        <a class="bp-button is-text is-large" style="text-decoration: none; pointer-events: none;" id="search-activate" disabled></a>
+                        <button
+                            class="sgds-button is-white is-large search-toggle"
+                            data-target="searchbar"
+                            style="text-decoration: none"
+                            id="search-activate">
+                            <span class="sgds-icon sgds-icon-search"></span>
+                        </button>
                     {%- endif -%}
                 </div>
             </div>
         </div>
         </div>
     </nav>
-
-    <div class="bp-container hide is-hidden-touch is-hidden-desktop-only search-bar" id="search-bar">
+    <div class="sgds-container hide is-hidden-touch is-hidden-desktop-only search-bar" id="search-bar">
         <div class="row margin--top--sm margin--bottom--sm is-gapless">
 
             <div class="col">
@@ -195,7 +200,7 @@
 
                       </div>
                       <div class="control">
-                          <button type="submit" class="bp-button is-secondary is-medium has-text-white search-button">SEARCH</button>
+                          <button type="submit" class="sgds-button is-secondary is-medium has-text-white search-button">SEARCH</button>
                       </div>
                   </div>
                 </form>

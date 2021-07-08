@@ -74,7 +74,7 @@ function displayFilterDropdown(earliestYear, currYear) {
     // Creating the a tags for desktop view
     var a_element = document.createElement("a");
     a_element.id = year;
-    a_element.classList.add("bp-dropdown-item", "padding--top--sm", "padding--bottom--none");
+    a_element.classList.add("sgds-dropdown-item", "padding--top--sm", "padding--bottom--none");
     a_element.onclick = function () {
       var closureYear = year.toString();
       return function () {
@@ -101,7 +101,7 @@ function hideAllPostsAndPagination() {
     paginationElement.removeChild(paginationElement.firstElementChild);
   }
 
-  document.querySelector(".pagination").style.display = "none";
+  document.querySelector(".sgds-pagination").style.display = "none";
 }
 
 function findEarliestYear() {
@@ -149,7 +149,7 @@ function unhideChunk(hidePageIndex, unhidePageIndex) {
 }
 
 function changePage(curr, index) {
-  var prev = document.querySelector("#paginator-pages .selected-page");
+  var prev = document.querySelector("#paginator-pages .is-current");
   changePageUtil(curr, index);
 
   // Use the number in the paginated button to figure out current page index and next page index
