@@ -18,12 +18,11 @@ url: "https://www.tech.gov.sg" # the base hostname & protocol for your site, e.g
 
 # Build settings
 plugins:
-  - jekyll-feed
-  - jekyll-assets
-  # - jekyll-paginate
-  - jekyll-sitemap
-  # - jekyll-paginate-v2
-  # - sanitize
+    - jekyll-feed
+    - jekyll-assets
+    - jekyll-paginate
+    - jekyll-sitemap
+    - jekyll-remote-theme
 safe: false
 exclude: [travis-script.js, .travis.yml, README.md, package.json, package-lock.json, test_suite, node_modules]
 
@@ -68,3 +67,4 @@ defaults:
       layout: "page"
 
 permalink: none
+
